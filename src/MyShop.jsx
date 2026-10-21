@@ -72,7 +72,10 @@ function MyShop() {
   return (
     <div className="page">
       <div className="header">
-        <h2 className="title">My shop</h2>
+        <div className="shop-title">
+          <Link to="/" className="back" aria-label="Back to home">←</Link>
+          <h2 className="title">My shop</h2>
+        </div>
         <button className="link" onClick={logOut}>Log out</button>
       </div>
       <p className="note">{vendor.shop_name} · {vendor.town}</p>
