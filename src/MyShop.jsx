@@ -9,6 +9,7 @@ function MyShop() {
   const [items, setItems] = useState([])
   const [tab, setTab] = useState('live')
   const [error, setError] = useState('')
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data }) => {
@@ -34,6 +35,17 @@ function MyShop() {
       setStatus('ready')
     })
   }, [])
+
+  async function copyLink() {
+    const link = `${window.location.origin}/vendor/${vendor.id}`
+    try {
+      await navigator.clipboard.writeText(link)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      window.prompt('Copy your shop link:', link)
+    }
+  }
 
   async function toggleSold(p) {
     setError('')
@@ -81,6 +93,9 @@ function MyShop() {
       <p className="note">{vendor.shop_name} · {vendor.town}</p>
 
       <Link to="/my-shop/new" className="cta">Post new items</Link>
+      <button className="cta outline" onClick={copyLink}>
+        {copied ? 'Link copied ✓' : 'Copy my shop link'}
+      </button>
       <Link to={`/vendor/${vendor.id}`} className="link center">See how buyers view my shop</Link>
 
       <div className="chips">
