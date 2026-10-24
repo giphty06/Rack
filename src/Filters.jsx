@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { products } from './data'
 import { applyFilters, emptyFilters } from './filterRules'
 
 const sizes = ['S', 'M', 'L', 'XL', 'XXL']
