@@ -103,3 +103,12 @@ button.cta { border: 0; cursor: pointer; font-family: inherit; width: 100%; marg
 a.btn-sm { display: flex; align-items: center; justify-content: center; }
 .shop-title { display: flex; align-items: center; gap: 12px; }
 .shop-title .title { margin: 0; }
+a.chip { justify-content: center; text-align: center; }
+.chips a.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1;
+  padding: 0 16px;
+}
