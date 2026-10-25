@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useProducts } from './useProducts'
+import { useSaved } from './useSaved'
 import Filters from './Filters'
 import { applyFilters, emptyFilters } from './filterRules'
 
 function Browse() {
   const { products, loading, error } = useProducts()
+  const { ids, isSaved, toggle } = useSaved()
   const [query, setQuery] = useState('')
   const [filters, setFilters] = useState(emptyFilters)
   const [open, setOpen] = useState(false)
@@ -23,7 +25,6 @@ function Browse() {
     <div className="page">
       <div className="header">
         <h1 className="brand">Rack</h1>
-        <span className="location">Near: Your town</span>
       </div>
 
       <input
@@ -38,6 +39,9 @@ function Browse() {
         <button className="chip" onClick={() => setOpen(true)}>
           Filters
         </button>
+        <Link className="chip" to="/saved">
+          Saved ({ids.length})
+        </Link>
         {filtersOn && (
           <button className="chip active" onClick={() => setFilters(emptyFilters)}>
             Clear filters ✕
@@ -54,14 +58,23 @@ function Browse() {
       ) : (
         <div className="grid">
           {shown.map((p) => (
-            <Link className="card" to={`/product/${p.id}`} key={p.id}>
-              <div className="photo">
-                {p.photo && <img src={p.photo} alt={p.name} />}
-              </div>
-              <div className="price">₦ {p.price.toLocaleString()}</div>
-              <div className="name">{p.name}</div>
-              <div className="vendor">{p.vendor} · {p.town}</div>
-            </Link>
+            <div className="card-wrap" key={p.id}>
+              <Link className="card" to={`/product/${p.id}`}>
+                <div className="photo">
+                  {p.photo && <img src={p.photo} alt={p.name} />}
+                </div>
+                <div className="price">₦ {p.price.toLocaleString()}</div>
+                <div className="name">{p.name}</div>
+                <div className="vendor">{p.vendor} · {p.town}</div>
+              </Link>
+              <button
+                className={isSaved(p.id) ? 'save-btn on' : 'save-btn'}
+                onClick={() => toggle(p.id)}
+                aria-label={isSaved(p.id) ? `Remove ${p.name} from saved` : `Save ${p.name}`}
+              >
+                {isSaved(p.id) ? '♥' : '♡'}
+              </button>
+            </div>
           ))}
         </div>
       )}

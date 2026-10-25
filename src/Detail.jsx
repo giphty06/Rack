@@ -1,9 +1,11 @@
 import { Link, useParams } from 'react-router-dom'
 import { useProducts } from './useProducts'
+import { useSaved } from './useSaved'
 
 function Detail() {
   const { id } = useParams()
   const { products, loading, error } = useProducts()
+  const { isSaved, toggle } = useSaved()
 
   const back = <Link to="/browse" className="back" aria-label="Back">←</Link>
 
@@ -13,6 +15,7 @@ function Detail() {
   const product = products.find((p) => p.id === Number(id))
   if (!product) return <div className="page">{back}<p className="empty">This item could not be found.</p></div>
 
+  const saved = isSaved(product.id)
   const more = products.filter(
     (p) => p.vendorId === product.vendorId && p.id !== product.id && !p.soldOut
   )
@@ -27,9 +30,14 @@ function Detail() {
         {product.photo && <img src={product.photo} alt={product.name} />}
       </div>
 
-      <div>
-        <div className="detail-price">₦ {product.price.toLocaleString()}</div>
-        <div className="detail-name">{product.name}</div>
+      <div className="header">
+        <div>
+          <div className="detail-price">₦ {product.price.toLocaleString()}</div>
+          <div className="detail-name">{product.name}</div>
+        </div>
+        <button className={saved ? 'chip active' : 'chip'} onClick={() => toggle(product.id)}>
+          {saved ? '♥ Saved' : '♡ Save'}
+        </button>
       </div>
 
       <Link className="vendor-card" to={`/vendor/${product.vendorId}`}>
