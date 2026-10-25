@@ -50,7 +50,7 @@ function Signup() {
         </div>
 
         {error && <p className="error">{error}</p>}
-        <p className="note">We'll send a code to your WhatsApp to confirm it's you. No password needed.</p>
+        <p className="note">We'll send a code to your WhatsApp to confirm it's you. No password needed. By continuing, you agree to our <Link to="/privacy" className="link">privacy notice</Link>.</p>
 
         <button className="cta" type="submit" disabled={busy}>
           {busy ? 'Sending code…' : 'Create my shop'}
