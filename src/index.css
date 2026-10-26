@@ -114,4 +114,5 @@ a.chip { justify-content: center; text-align: center; }
 }
    .legal h3 { font-size: 16px; margin: 16px 0 4px; }
    .legal p { font-size: 14px; color: var(--grey); line-height: 1.5; margin: 0 0 8px; }
-   
+   .legal h3 { font-size: 16px; margin: 16px 0 4px; }
+.legal p { font-size: 14px; color: var(--grey); line-height: 1.5; margin: 0 0 8px; }
