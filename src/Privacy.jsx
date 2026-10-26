@@ -5,13 +5,13 @@ function Privacy() {
     <div className="page legal">
       <Link to="/" className="back" aria-label="Back">←</Link>
       <h2 className="title">Privacy notice</h2>
-      <p>Last updated: [25 October 2026]</p>
+      <p>Last updated: 25 October 2026</p>
 
       <h3>Who we are</h3>
       <p>
         Rack is a website that helps buyers find vendors and chat with them on WhatsApp.
-        It is run by [Chima,Gifty Chidiebere] in [Aba], Nigeria. You can contact us at
-        [rack.com.ng.com].
+        It is run by Chima Gifty Chidiebere in Aba, Nigeria. You can contact us at
+    rack.com.ng@gmail.com
       </p>
 
       <h3>What we collect</h3>
