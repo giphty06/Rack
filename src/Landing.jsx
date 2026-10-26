@@ -72,7 +72,7 @@ function Landing() {
         </div>
       </div>
 
-      <div className="inner footer">Rack · <Link to="/privacy" className="link">Privacy notice</Link> · Contact: [your WhatsApp or email]</div>
+      <div className="inner footer">Rack · <Link to="/privacy" className="link">Privacy notice</Link> · Contact: [rack.com.ng@gmail.com]</div>
     </div>
   )
 }
