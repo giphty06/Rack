@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import Faq from './Faq'
 
 const buyerSteps = [
   { title: 'Search or filter', text: 'Search by name, or filter by price and size.' },
@@ -63,6 +64,13 @@ function Landing() {
         <h3>For vendors: post once, stay visible</h3>
         <p className="vendor">No more statuses that disappear after a day. Your products stay on your shop page for buyers to find.</p>
         <Steps items={vendorSteps} />
+      </div>
+
+      <div className="band">
+        <div className="inner section">
+          <h3>Questions</h3>
+          <Faq />
+        </div>
       </div>
 
       <div className="final">
