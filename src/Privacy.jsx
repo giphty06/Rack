@@ -1,20 +1,21 @@
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 function Privacy() {
   const navigate = useNavigate()
+  const fromSignup = useLocation().state?.from === 'signup'
   const goBack = () => (window.history.length > 1 ? navigate(-1) : navigate('/'))
 
   return (
     <div className="page legal">
       <button className="back" onClick={goBack} aria-label="Back">←</button>
       <h2 className="title">Privacy notice</h2>
-      <p>Last updated: [date]</p>
+      <p>Last updated: 29th October 2026.</p>
 
       <h3>Who we are</h3>
       <p>
         Rack is a website that helps buyers find vendors and chat with them on WhatsApp.
-        It is run by Chima Gifty Chidiebere in Aba, Nigeria. You can contact us at
-        rack.com.ng@gmail.com
+        It is run by Gifty Chima Chidiebere in Aba, Nigeria. You can contact us at
+        rack.com.ng@gmail.com.
       </p>
 
       <h3>What we collect</h3>
@@ -53,10 +54,12 @@ function Privacy() {
       <h3>Who Rack is for</h3>
       <p>Rack is meant for people aged 18 and over.</p>
 
-     <h3>Changes</h3>
+      <h3>Changes</h3>
       <p>We may update this notice. The date at the top shows when it last changed.</p>
 
-      <button className="cta" onClick={goBack}>Go back</button>
+      <button className="cta" onClick={goBack}>
+        {fromSignup ? 'Back to sign up' : 'Go back'}
+      </button>
     </div>
   )
 }
