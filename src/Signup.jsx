@@ -1,15 +1,34 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { supabase } from './supabase'
 import { toInternational, isValid } from './phone'
 
+const DRAFT = 'rack-signup-draft'
+
+function loadDraft() {
+  try {
+    return JSON.parse(sessionStorage.getItem(DRAFT)) || {}
+  } catch {
+    return {}
+  }
+}
+
 function Signup() {
   const navigate = useNavigate()
-  const [shop, setShop] = useState('')
-  const [phone, setPhone] = useState('')
-  const [town, setTown] = useState('')
+  const [saved] = useState(loadDraft)
+  const [shop, setShop] = useState(saved.shop || '')
+  const [phone, setPhone] = useState(saved.phone || '')
+  const [town, setTown] = useState(saved.town || '')
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
+
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(DRAFT, JSON.stringify({ shop, phone, town }))
+    } catch {
+      // storage unavailable, the form still works
+    }
+  }, [shop, phone, town])
 
   async function submit(e) {
     e.preventDefault()
@@ -50,7 +69,7 @@ function Signup() {
         </div>
 
         {error && <p className="error">{error}</p>}
-        <p className="note">We'll send a code to your WhatsApp to confirm it's you. No password needed. By continuing, you agree to our <Link to="/privacy" className="link">privacy notice</Link>.</p>
+        <p className="note">We'll send a code to your WhatsApp to confirm it's you. No password needed. By continuing, you agree to our <a href="/privacy" target="_blank" rel="noreferrer" className="link">privacy notice</a> (opens in a new tab).</p>
 
         <button className="cta" type="submit" disabled={busy}>
           {busy ? 'Sending code…' : 'Create my shop'}
