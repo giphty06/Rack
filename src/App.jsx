@@ -10,6 +10,7 @@ import Verify from './Verify'
 import MyShop from './MyShop'
 import NewItems from './NewItems'
 import EditItem from './EditItem'
+import EditShop from './EditShop'
 import Privacy from './Privacy'
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/my-shop" element={<MyShop />} />
         <Route path="/my-shop/new" element={<NewItems />} />
         <Route path="/my-shop/edit/:id" element={<EditItem />} />
+        <Route path="/my-shop/page" element={<EditShop />} />
         <Route path="/privacy" element={<Privacy />} />
       </Routes>
     </BrowserRouter>

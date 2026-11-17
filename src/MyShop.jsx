@@ -93,6 +93,7 @@ function MyShop() {
       <p className="note">{vendor.shop_name} · {vendor.town}</p>
 
       <Link to="/my-shop/new" className="cta">Post new items</Link>
+      <Link to="/my-shop/page" className="cta outline">Edit shop page</Link>
       <button className="cta outline" onClick={copyLink}>
         {copied ? 'Link copied ✓' : 'Copy my shop link'}
       </button>
